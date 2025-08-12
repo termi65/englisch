@@ -2,7 +2,7 @@
 	{"index":0, "Deutsch": "urkomisch, zum Brüllen", "Englisch": "hilarious"}, 
 	{"index":1, "Deutsch": "plündernd", "Englisch": "pillaging"}
 	, {"index":2, "Deutsch": "prahlen, angeben", "Englisch": "to brag"}
-	, {"index":3, "Deutsch": "Auftritt, auftreten", "Englisch": "gig"}
+	, {"index":3, "Deutsch": "Auftritt, auftraten", "Englisch": "gig"}
 	, {"index":4, "Deutsch": "Fehler, Störung", "Englisch": "glitch"}
 	, {"index":5, "Deutsch": "in der Sonne baden", "Englisch": "to bask"}
 	, {"index":6, "Deutsch": "Brigg, Militärgefängnis", "Englisch": "brigg"}
@@ -189,7 +189,7 @@
 	, {"index":187, "Deutsch": "tun Sie mir einen Gefallen", "Englisch": "do me a solid"}
 	, {"index":188, "Deutsch": "Sie haben etw. gut bei mir", "Englisch": "I owe you one"}
 	, {"index":189, "Deutsch": "Strampler", "Englisch": "rompers"}
-	, {"index":190, "Deutsch": "Amt für Alkohol, Tabakwaren und Feuerwaffen", "Englisch": "ATF"}
+	, {"index":190, "Deutsch": "Bureau of Alcoholics, Tobacco and Firearms", "Englisch": "ATF"}
 	, {"index":191, "Deutsch": "Büste, Pleite, Razzia", "Englisch": "bust"}
 	, {"index":192, "Deutsch": "Home Equity Line Of Credit (Kreditrahmen weil man ein Haus besitzt)", "Englisch": "HELOC"}
 	, {"index":193, "Deutsch": "es herausfinden", "Englisch": "to figure it out"}
@@ -619,7 +619,7 @@
 	, {"index":617, "Deutsch": "Juckreiz", "Englisch": "jock itch"}
 	, {"index":618, "Deutsch": "Rezept", "Englisch": "prescription"}
 	, {"index":619, "Deutsch": "etw rechen", "Englisch": "to rake in sth"}
-	, {"index":620, "Deutsch": "verachten", "Englisch": "to despise"}
+	, {"index":620, "Deutsch": "verachten", "Englisch": " to despise"}
 	, {"index":621, "Deutsch": "etw ankurbeln, erhöhen", "Englisch": "to crank up"}
 	, {"index":622, "Deutsch": "kläffen", "Englisch": "to yap"}
 	, {"index":623, "Deutsch": "sich den Arsch aufreißen", "Englisch": "to bust ass"}
@@ -648,7 +648,7 @@
 	, {"index":646, "Deutsch": "Lastschiff", "Englisch": "barge"}
 	, {"index":647, "Deutsch": "Berufsrisiko", "Englisch": "occupational hazard"}
 	, {"index":648, "Deutsch": "Klasse! Toll!", "Englisch": "attaboy"}
-	, {"index":649, "Deutsch": "Boogerpulver (chem. Spielzeug f. Kinder)", "Englisch": "Booger powder"}
+	, {"index":649, "Deutsch": "Boogerpulver (chem Spielzeug f. Kinder)", "Englisch": "Booger powder"}
 	, {"index":650, "Deutsch": "Dose, Caddy", "Englisch": "caddy"}
 	, {"index":651, "Deutsch": "Hundestaffel", "Englisch": "K-9 unit"}
 	, {"index":652, "Deutsch": "unerlaubt abwesend", "Englisch": "absent without official leave (AWOL)"}

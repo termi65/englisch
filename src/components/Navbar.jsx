@@ -1,13 +1,37 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import supabase from "../tools/supabase";
 
 export default function Navbar() {
     const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+    const [user, setUser] = useState(null);
 
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
     const closeNav = () => {
         setIsNavCollapsed(true);
     };
+
+    const handleLogout = async () => {
+        const { error } = await supabase.auth.signOut();
+        if (error) 
+            console.error('Fehler beim Abmelden:', error.message);
+        setUser(null);
+        // onRefresh();
+    }
+
+    useEffect(() => {
+        const checkUser = async () => {
+            const {data} = await supabase.auth.getUser();
+            setUser(data?.user);
+        }
+        checkUser();
+
+        const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+            setUser(session?.user || null);
+        });
+        return authListener?.subscription.unsubscribe();
+    },[])
 
     return (
         <div className="d-flex flex-column p-4 align-items-center bg-dark">
@@ -33,7 +57,15 @@ export default function Navbar() {
                             <li className="nav-item" key={2}>
                                 <Link to="/vokabeln" className="px-2 text-info" onClick={closeNav}><i className="bi bi-fuel-pump"></i> Vokabeln</Link>
                             </li>
-                                                     
+                            {user ? 
+                                <li className="nav-item" key={5}>
+                                    <Link to="/" className="px-2 text-info" onClick={() => {closeNav(); handleLogout();}}><i className="bi bi-lock"></i>Logout</Link>
+                                </li>
+                                :
+                                <li className="nav-item" key={4}>
+                                    <Link to="/login" className="px-2 text-info" onClick={closeNav}><i className="bi bi-unlock"></i>Login</Link>
+                                </li> 
+                            }
                         </ul>
                     </div>
                 </div>
