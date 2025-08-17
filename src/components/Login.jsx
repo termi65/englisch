@@ -33,7 +33,8 @@ const Login = ({onAnmelden}) => {
     }
 
     useEffect(() => {
-        setPassword('m.hoffmann65@t-online.de');
+        setEmail('m.hoffmann65@t-online.de');
+        setPassword('aLine98/03');
         const fetchUser = async () => {
           const { data: user } = await supabase.auth.getUser();
           setUser(user);

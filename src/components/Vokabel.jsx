@@ -1,4 +1,8 @@
-export default function Vokabel({vokabel}) {
+import { useParams } from "react-router-dom"
+
+export default function Vokabel() {
+    const id = useParams("id");
+    
 
     return (
         <div>

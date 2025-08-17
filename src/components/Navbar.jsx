@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 
 import supabase from "../tools/supabase";
 
-export default function Navbar() {
+export default function Navbar({user}) {
     const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-    const [user, setUser] = useState(null);
 
     const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
     const closeNav = () => {
@@ -16,22 +15,10 @@ export default function Navbar() {
         const { error } = await supabase.auth.signOut();
         if (error) 
             console.error('Fehler beim Abmelden:', error.message);
-        setUser(null);
-        // onRefresh();
+        //onRefresh();
     }
 
-    useEffect(() => {
-        const checkUser = async () => {
-            const {data} = await supabase.auth.getUser();
-            setUser(data?.user);
-        }
-        checkUser();
-
-        const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
-            setUser(session?.user || null);
-        });
-        return authListener?.subscription.unsubscribe();
-    },[])
+    
 
     return (
         <div className="d-flex flex-column p-4 align-items-center bg-dark">
