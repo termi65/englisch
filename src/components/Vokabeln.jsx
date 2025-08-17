@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 // import vokabeln from "/woerter.json";
 import supabase from "../tools/supabase";
+import { useNavigate } from "react-router-dom";
 
 export default function Vokabeln() {
     const [vokabeln, setVokabeln] = useState([]);
     const [columns, setColumns] = useState(["deutsch", "englisch", "Bearbeiten"]);
     const [selectedRow, setSelectedRow] = useState(null);
     const [loading, setLoading] = useState(true);
+    
+    const navigate = useNavigate();
 
     const ladeVokabeln = async () => {
         setLoading(true);
@@ -15,24 +18,24 @@ export default function Vokabeln() {
         setLoading(false);
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        let error;
-        if (selectedRow) {
-            error = await supabase
-            .from("vokabeln")
-            .update({ deutsch: selectedRow.deutsch, englisch: selectedRow.englisch })
-            .eq("id", selectedRow.id);
-            }
-        else {
-            error = await supabase
-            .from("vokablen")
-            .insert({ deutsch: selectedRow.deutsch, englisch: selectedRow.englisch  });
-        }
-        if (!error.error) {
-            setSelectedRow(null);
-        }
-    }
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
+    //     let error;
+    //     if (selectedRow) {
+    //         error = await supabase
+    //         .from("vokabeln")
+    //         .update({ deutsch: selectedRow.deutsch, englisch: selectedRow.englisch })
+    //         .eq("id", selectedRow.id);
+    //         }
+    //     else {
+    //         error = await supabase
+    //         .from("vokablen")
+    //         .insert({ deutsch: selectedRow.deutsch, englisch: selectedRow.englisch  });
+    //     }
+    //     if (!error.error) {
+    //         setSelectedRow(null);
+    //     }
+    // }
 
     useEffect(() => {
         try {
@@ -73,50 +76,47 @@ export default function Vokabeln() {
         setColumns(newCols);
     };
 
+    const deleteVokabel = async (id) => {
+        try {
+            const { error } = await supabase.from('vokabeln').delete().eq('id', id);
+            if (error) {
+                console.error("Fehler beim Löschen:", error);
+                alert("Fehler beim Löschen der Vokabel!");
+            } 
+        } catch (err) {
+            console.error("Unerwarteter Fehler:", err);
+            alert("Unerwarteter Fehler beim Löschen!");
+        }
+        ladeVokabeln();
+    }
+
     if (loading) return (<div>Lade Vokabeln ...</div>);
 
     return (
         <div className="container border border-secondary d-flex flex-column p-1 align-items-center">
             <h1>Vokabeln:</h1>
-            {!selectedRow && (
-                <div className="w-100 border border-secondary">
-                    <h2>Liste</h2>
-                    <table className="d-table">
-                        <thead>
-                            <tr> <th colSpan={2}><button onClick={() => swapColumns("Deutsch", "Englisch")}><i class="bi bi-arrows"></i></button></th> </tr>
-                            <tr> {columns.map(col => <th key={col}> <button onClick={handleSort}>{col}</button> </th>)} </tr>
-                        </thead>
-                        <tbody>
-                            {vokabeln.map((row,i) => (
-                                <tr key={i}>
-                                    {columns.map(col => <td key={col}>{row[col]}</td>)}
-                                    <td><button onClick={() => setSelectedRow(row)}><i class="bi bi-pencil"></i></button></td>
-                                </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
-                </div>)}
-            {selectedRow && (
-                <form className="container " onSubmit={handleSubmit}>
-                    <h3 className="">Vokabel</h3>
-                    <div>
-                        <label className="d-flex p-2 mb-1 border border-secondary">Deutsch</label>
-                        <input className="p-2 w-100" type="text" value={selectedRow.deutsch} id="deutsch"
-                            onChange={(e) => setSelectedRow({ ...selectedRow, deutsch: e.target.value })} />
-                    </div>
-                    <div>
-                        <label className="d-flex p-2 my-1 border border-secondary">Englisch</label>
-                        <input className="p-2 w-100" type="text" value={selectedRow.englisch} id="englisch"
-                            onChange={(e) => setSelectedRow({ ...selectedRow, englisch: e.target.value })} />
-                    </div>
-                    <p></p>
-                    <button>Speichern</button>
-                    <button onClick={() => setSelectedRow(null)}>Abbrechen</button>
-                </form>
-                )
-
-            }
+            <div className="w-100 border border-secondary">
+                <h2>Liste</h2>
+                <table className="d-table">
+                    <thead>
+                        <tr> 
+                            <th><button onClick={() => swapColumns("Deutsch", "Englisch")}><i class="bi bi-arrows"></i></button></th>
+                            <th><button onClick={() => navigate(`/vokabel/0`)}><i class="bi bi-clipboard-plus"></i></button></th> 
+                        </tr>
+                        <tr> {columns.map(col => <th key={col}> <button onClick={handleSort}>{col}</button> </th>)} </tr>
+                    </thead>
+                    <tbody>
+                        {vokabeln.map((row,i) => (
+                            <tr key={i}>
+                                {columns.map(col => <td key={col}>{row[col]}</td>)}
+                                <td><button onClick={() => navigate(`/vokabel/${row.id}`)}><i class="bi bi-pencil"></i></button></td>
+                                <td><button onClick={() => deleteVokabel(row.id)}><i class="bi bi-x-square"></i></button></td>
+                            </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     )
 }
