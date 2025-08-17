@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-// import vokabeln from "/woerter.json";
 import supabase from "../tools/supabase";
 import { useNavigate } from "react-router-dom";
 
@@ -17,25 +16,6 @@ export default function Vokabeln() {
         setVokabeln(data);
         setLoading(false);
     }
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-    //     let error;
-    //     if (selectedRow) {
-    //         error = await supabase
-    //         .from("vokabeln")
-    //         .update({ deutsch: selectedRow.deutsch, englisch: selectedRow.englisch })
-    //         .eq("id", selectedRow.id);
-    //         }
-    //     else {
-    //         error = await supabase
-    //         .from("vokablen")
-    //         .insert({ deutsch: selectedRow.deutsch, englisch: selectedRow.englisch  });
-    //     }
-    //     if (!error.error) {
-    //         setSelectedRow(null);
-    //     }
-    // }
 
     useEffect(() => {
         try {
