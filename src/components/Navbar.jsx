@@ -42,7 +42,7 @@ export default function Navbar({user}) {
                             </li>
                             <li><p> </p></li>
                             <li className="nav-item" key={2}>
-                                <Link to="/vokabeln" className="px-2 text-info" onClick={closeNav}><i className="bi bi-fuel-pump"></i> Vokabeln</Link>
+                                <Link to="/vokabeln?sortierung=none" className="px-2 text-info" onClick={closeNav}><i className="bi bi-fuel-pump"></i> Vokabeln</Link>
                             </li>
                             {user ? 
                                 <li className="nav-item" key={5}>

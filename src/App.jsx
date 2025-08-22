@@ -1,5 +1,4 @@
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import './App.css';
 import { useEffect, useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrorUI from './components/ErrorUI';
@@ -44,7 +43,8 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/vokabeln" element={<Vokabeln />} />
-                    <Route path="/vokabel/:id" element={<Vokabel />} />
+                    <Route path="/vokabel/:id/:sortierung" element={<Vokabel />} />
+                    {/* <Route path='/deletedialog/:id/:title/:text' element={<DeleteDialog />} /> */}
                     {/* <Route path="/idioms" element={<Idioms />} /> */}
                     {!user && <Route path="/login" element={<Login onAnmelden={() => navigate("/")} />} />}
                 </Routes>
