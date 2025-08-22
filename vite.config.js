@@ -13,6 +13,8 @@ export default defineConfig({
       manifest: {
         name: 'Englisch',
         short_name: 'Englisch',
+        start_url: '/englisch',
+        display: 'standalone',
         description: 'Kleiner Englischkurs für Fortgeschrittene',
         theme_color: '#ffffff',
         icons: [
