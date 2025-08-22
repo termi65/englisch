@@ -48,6 +48,17 @@ export default function Vokabeln() {
         catch(error) {
             console.log("Fehler:", error);
         }
+        const handleKeyDown = (e) => {
+            if (e.shiftKey && e.key === "*") {
+                e.preventDefault(); // Prevent default browser behavior
+                navigate(`/idiom/0/${currentOrder}`);
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+        };
     },[sortierung, modalDelete]);
     
     
@@ -112,7 +123,7 @@ export default function Vokabeln() {
                         <button title="Spalten tauschen" onClick={() => swapColumns("Deutsch", "Englisch")}><i className="bi bi-arrows"></i></button>
                     </div>
                     <div className="col-md-9">
-                        <button title="Eine Vokabel hinzufügen" onClick={() => navigate(`/vokabel/0/${currentOrder}`)}><i className="bi bi-clipboard-plus"></i></button>
+                        <button title="Eine Vokabel hinzufügen (Shift - +)" onClick={() => navigate(`/vokabel/0/${currentOrder}`)}><i className="bi bi-clipboard-plus"></i></button>
                     </div>
                     <div className="row">
                         <div className="col-md-5">

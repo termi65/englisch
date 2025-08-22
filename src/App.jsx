@@ -8,6 +8,8 @@ import Vokabeln from './components/Vokabeln';
 import Login from './components/Login';
 import supabase from './tools/supabase';
 import Vokabel from './components/Vokabel';
+import Idioms from './components/Idioms';
+import Idiom from './components/Idiom';
 
 // import Idioms from './components/Idioms';
 
@@ -44,8 +46,8 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/vokabeln" element={<Vokabeln />} />
                     <Route path="/vokabel/:id/:sortierung" element={<Vokabel />} />
-                    {/* <Route path='/deletedialog/:id/:title/:text' element={<DeleteDialog />} /> */}
-                    {/* <Route path="/idioms" element={<Idioms />} /> */}
+                    <Route path="/idioms" element={<Idioms />} />
+                    <Route path="/idiom/:id/:sortierung" element={<Idiom />} />
                     {!user && <Route path="/login" element={<Login onAnmelden={() => navigate("/")} />} />}
                 </Routes>
             </ErrorBoundary>
