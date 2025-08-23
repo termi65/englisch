@@ -1,0 +1,122 @@
+// custom.scss
+// --------------------------------------------------
+// Eigene Bootstrap-Konfiguration mit @use
+// --------------------------------------------------
+
+// 1. Sass-Module laden (z. B. fürs Farb-Mischen)
+@use "sass:color";
+
+// 2. Bootstrap laden und direkt Variablen überschreiben
+//    Alles, was du hier in `with (...)` angibst, ersetzt die Defaults
+@use "../../node_modules/bootstrap/scss/bootstrap.scss" with (
+    // Hauptfarben
+    $primary: #ff5733,
+    $secondary: #333333,
+    $body-bg: rgb(43, 43, 43),
+    $body-color: rgb(160, 160, 160),
+
+    // Optional: komplette Theme-Map überschreiben
+    $theme-colors: (
+        "primary": #ff5733,
+        "secondary": #333333,
+        "success": #28a745,
+        "danger": #dc3545,
+        "warning": #ffc107,
+        "info": #17a2b8,
+        "light": #f8f9fa,
+        "dark": #212529
+    )
+);
+
+// 3. Eigene Erweiterungen oder zusätzliche Styles
+body {
+  background-color: bootstrap.$body-bg; // Zugriff auf Bootstrap-Variablen
+  color: bootstrap.$body-color;
+}
+
+// Beispiel: eigene Utility-Klasse
+.btn-custom {
+  background-color: bootstrap.$primary;
+  color: #fff;
+  &:hover {
+    background-color: color.scale(bootstrap.$primary, $lightness: -10%);
+  }
+}
+
+.navbar.fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+}
+
+main {
+  padding-top: 70px;
+}
+
+.drehung90Grad {
+  animation-name: drehung;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes drehung {
+  0% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(90deg);
+  }
+  66% {
+    transform: rotate(120deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+.input-group > .form-control[type=number] {
+  position: relative;
+  flex: 1 1 auto;
+  width: 80px;
+  text-align: end;
+  padding: 2px;
+  border-radius: 4px;
+  border-color: #444;
+}
+
+.werte-label {
+  min-width: 80px;
+  background-color: var(--bs-white);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  border-color: #444;
+}
+
+.form-select {
+  --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+  display: block;
+  width: 100%;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: var(--bs-border-width) solid black;
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+button {
+    background-color: var(--bs-success-text-emphasis);
+    border :1px solid bootstrap.$primary;
+    color: var(--bs-border-color);
+}

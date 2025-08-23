@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "ccss": "sass ./src/css/custom.scss ./src/App.css",
+    "scss": "sass ./src/css/App.scss ./src/App.css",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",

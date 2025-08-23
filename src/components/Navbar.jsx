@@ -21,7 +21,7 @@ export default function Navbar({user}) {
 
     return (
         <div className="d-flex flex-column p-4 align-items-center bg-dark">
-            <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top navbar-on-top">
+            <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark navbar-on-top">
                 <div className="container">
                     <button className="navbar-toggler" 
                             type="button"
