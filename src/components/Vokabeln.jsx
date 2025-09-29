@@ -117,13 +117,13 @@ export default function Vokabeln() {
         <div className="container border border-secondary d-flex flex-column p-1 align-items-center">
             <h1>Vokabeln:</h1>
             <div className="w-100 border border-primary">
-                <h2>Liste</h2>
+                <h2>Liste <button title="Eine Vokabel hinzufügen (Shift - +)" onClick={() => navigate(`/vokabel/0/${currentOrder}`)}><i className="bi bi-clipboard-plus"></i></button></h2>
                 <div className="row">
                     <div className="col-md-3">
                         <button title="Spalten tauschen" onClick={() => swapColumns("Deutsch", "Englisch")}><i className="bi bi-arrows"></i></button>
                     </div>
                     <div className="col-md-9">
-                        <button title="Eine Vokabel hinzufügen (Shift - +)" onClick={() => navigate(`/vokabel/0/${currentOrder}`)}><i className="bi bi-clipboard-plus"></i></button>
+                        
                     </div>
                     <div className="row">
                         <div className="col-md-5">

@@ -119,22 +119,23 @@ export default function Idioms() {
         <div className="container border border-secondary d-flex flex-column p-1 align-items-center">
             <h1>Idiome (Redewendungen):</h1>
             <div className="w-100 border border-primary">
-                <h2>Liste</h2>
+                <h2>Liste <button title="Eine Idiom hinzufügen (Shift-+)" onClick={() => navigate(`/idiom/0/${currentOrder}`)}><i className="bi bi-clipboard-plus"></i></button></h2>
                 <div className="row">
                     <div className="col-md-3">
-                        <button title="Spalten tauschen" onClick={() => swapColumns("Deutsch", "Englisch")}><i className="bi bi-arrows"></i></button>
+                        
                     </div>
                     <div className="col-md-9">
-                        <button title="Eine Idiom hinzufügen (Shift-+)" onClick={() => navigate(`/idiom/0/${currentOrder}`)}><i className="bi bi-clipboard-plus"></i></button>
+                        
                     </div>
                     <div className="row">
-                        <div className="col-md-5">
+                        <div className="col-md-4">
                             <button title="Nach dieser Spalte sortieren" onClick={handleSort}>{columns[0]}</button>
                         </div>
+                        <div className="col-md-1"><button title="Spalten tauschen" onClick={() => swapColumns("Deutsch", "Englisch")}><i className="bi bi-arrows"></i></button></div>
                         <div className="col-md-5">
                             <button title="Nach dieser Spalte sortieren" onClick={handleSort}>{columns[1]}</button>
                         </div>
-                        <div className="col-md-2">
+                        <div className="col-md-1">
                             
                         </div>
                     </div>
